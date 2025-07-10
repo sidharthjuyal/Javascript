@@ -16,3 +16,5 @@
    - Timers (e.g., setTimeout)
    - File I/O (in Node.js)
    - The event loop and callback queue manage asynchronous behavior, allowing non-blocking execution.
+
+This Folder contains the practice done for these concepts.
