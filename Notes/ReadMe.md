@@ -1,4 +1,4 @@
-# 📘 JavaScript Fundamentals – Notes
+# 📘 JavaScript Basics - Notes
 ## 🧵 Single-Threaded Execution
 - JavaScript runs in a single-threaded environment.
 - This means it can execute one operation at a time in a single call stack.
