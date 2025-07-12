@@ -31,7 +31,7 @@ var square4 = square(4);
 2. **Code Phase**
    * `n = 2`
    * Calling `square(2)`:
-     * New function execution context:
+     * New function execution context (with memory component/ variable environment and code Component/thread of execution):
        * `num = 2`
        * `ans = 4`
        * returns `4`, stored in `square2`
@@ -44,12 +44,19 @@ var square4 = square(4);
 ---
 
 ## 📚 3. Call Stack Mechanics
-JS is **single-threaded** and synchronous. The **Call Stack** manages which context runs:
+JS is **single-threaded** and synchronous. The **Call Stack** manages order of execution of execution contexts:
 * Start: `Global Execution Context` (bottom)
 * `square(n)` is called → new context pushed on top
 * Once `square` returns → its context is popped
 * Then `square(4)` → another context push/pop
 * End: Back to just the GEC
+
+* Some fancy names for call stack
+  - Execution context stack
+  - program stack
+  - control stack
+  - runtime stack
+  - machine stack
 
 ---
 
