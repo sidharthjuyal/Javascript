@@ -4,7 +4,7 @@
 
 ## 🔍 1. What Is Hoisting?
 Hoisting is JavaScript’s behavior during the **memory creation phase**, where:
-- **Variable declarations** (with `var`) are hoisted and initialized as `undefined`.
+- **Variable declarations** (with `var`) are hoisted (stored in memory ) and initialized as `undefined`.
 - **Function declarations** are hoisted with their full definitions.  
 This allows you to use variables and call functions before they appear in your code—though with different outcomes.
 
