@@ -69,7 +69,7 @@ var getName = function() {
 | Declaration Type      | Hoisting Behavior                            |
 | --------------------- | -------------------------------------------- |
 | `var x`               | Hoisted → `undefined`                        |
-| `let` / `const`       | Hoisted **into TDZ** → ReferenceError        |
+| `let` / `const`       | Hoisted **into TDZ ( Temporal Dead Zone )** → ReferenceError        |
 | `function fn() {...}` | Fully hoisted → callable anytime             |
 | `var fn = function()` | Hoisted as `undefined` → TypeError if called |
 
@@ -108,16 +108,17 @@ Function expressions HOIST only the variable:
 
 ```
 [Global EC Memory]
+var getName = () => {} or var getName = function (){}
 - getName   → undefined
 Code Execution:
-1. getName() → TypeError: not a function
+1. getName() → TypeError: getName is not a function
 ```
 
 ---
 
 ## ✅ 9. Key Takeaways
 * Hoisting moves **declarations** to top during memory phase, not initializations
-* `var` → hoisted as `undefined`; `let`/`const` → TDZ; function declarations → fully hoisted
+* `var` → hoisted as `undefined`; `let`/`const` → TDZ (Temporal Dead Zone); function declarations → fully hoisted
 * **Function expressions** behave like variables—no hoisting of function code
 * Understanding hoisting is crucial to avoid unexpected bugs and errors
 
