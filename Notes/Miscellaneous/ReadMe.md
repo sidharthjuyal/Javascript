@@ -7,7 +7,7 @@
 - JS engine creates:
   - **Global Execution Context (GEC)**
   - **Global object** (`window` in browsers)
-  - `this` in global scope points to `window` :contentReference[oaicite:1]{index=1}
+  - `this` in global scope points to `window`
 
 ---
 
@@ -33,7 +33,7 @@ var x = 10;
 console.log(this.x);         // 10
 console.log(window.x);       // 10
 ```
-* `this` and `window` are interchangeable globally ([scribd.com][1]).
+* `this` and `window` are interchangeable globally.
 
 ---
 
