@@ -6,7 +6,6 @@
 Hoisting is JavaScript’s behavior during the **memory creation phase**, where:
 - **Variable declarations** (with `var`) are hoisted and initialized as `undefined`.
 - **Function declarations** are hoisted with their full definitions.  
-  :contentReference[oaicite:1]{index=1}
 This allows you to use variables and call functions before they appear in your code—though with different outcomes.
 
 ---
@@ -34,7 +33,7 @@ function getName() {
 }
 ````
 ✔️ `getName()` works due to function hoisting
-✔️ `x` logs `undefined`, not an error ([namaste-javascript-handbook.vercel.app][1], [Medium][2])
+✔️ `x` logs `undefined`, not an error
 
 ---
 
@@ -48,7 +47,7 @@ function getName() {
 }
 ```
 ✔️ The function exists
-❌ `x` isn't declared, so accessing it gives a **ReferenceError** ([namaste-javascript-handbook.vercel.app][1])
+❌ `x` isn't declared, so accessing it gives a **ReferenceError**
 
 ---
 
@@ -61,7 +60,7 @@ var getName = function() {
 };
 ```
 ✔️ `getName` is a **variable declaration**, not a function declaration
-✔️ It's hoisted as `undefined`, so calling it yields a **TypeError** ([namaste-javascript-handbook.vercel.app][1])
+✔️ It's hoisted as `undefined`, so calling it yields a **TypeError**
 
 ---
 
@@ -117,7 +116,7 @@ Code Execution:
 ---
 
 ## ✅ 9. Key Takeaways
-* Hoisting moves **declarations** to top during memory phase, not initializations ([NamasteDev][3])
+* Hoisting moves **declarations** to top during memory phase, not initializations
 * `var` → hoisted as `undefined`; `let`/`const` → TDZ; function declarations → fully hoisted
 * **Function expressions** behave like variables—no hoisting of function code
 * Understanding hoisting is crucial to avoid unexpected bugs and errors
