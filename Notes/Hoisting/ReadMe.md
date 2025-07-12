@@ -1,125 +1,123 @@
-# 📘 Hoisting in JavaScript
+# 📘 How Functions Work & Variable Environment
 
 ---
 
-## 🔍 1. What Is Hoisting?
-Hoisting is JavaScript’s behavior during the **memory creation phase**, where:
-- **Variable declarations** (with `var`) are hoisted (stored in memory ) and initialized as `undefined`.
-- **Function declarations** are hoisted with their full definitions.  
-This allows you to use variables and call functions before they appear in your code—though with different outcomes.
-
----
-
-## 🧠 2. Memory Creation Phase Explained
-Before execution, JS engine builds the memory model (Execution Context):
+## 🔍 1. Function Invocation & Execution Context
+Whenever a function is invoked, JavaScript creates a **new Functional Execution Context (FEC)** — a container similar to the global one but scoped to that function.
+Each FEC has:
 ```
-Memory (before code runs):
-
-* var x      → undefined
-* function foo() { … }  → full function code
-
+Execution Context (Function)
+├── Memory Component (Variable Environment)
+│   ├── Parameters as variables
+│   ├── Local variables (initialized `undefined`)
+├── Code Component (Thread of Execution)
+│   └── Function body executed line-by-line
+└── Outer Lexical Environment reference
 ````
-So calls before declaration often don’t error—but be careful which declaration you’re using.
 
 ---
 
-## 🧩 3. Example 1 – Function Declarations
+## 🧠 2. Variable Environment in Function
+When a function runs:
+1. **Memory Phase**:
+   - Parameters and local `var` variables are hoisted (set to `undefined`).
+2. **Execution Phase**:
+   - Values are assigned, logic is executed, and function may return a value.
+---
+
+### 🔁 Example:
 ```js
-getName();         // ✅ Logs "Namaste JavaScript"
-console.log(x);    // ✅ undefined
-var x = 7;
-function getName() {
-  console.log("Namaste JavaScript");
+var x = 1;
+a();
+b();
+console.log(x);
+
+function a() {
+  var x = 10;
+  console.log(x);
+}
+
+function b() {
+  var x = 100;
+  console.log(x);
 }
 ````
-✔️ `getName()` works due to function hoisting
-✔️ `x` logs `undefined`, not an error
+### 🔍 Output:
+```
+10
+100
+1
+```
+
+### ⚙️ Execution Flow:
+
+#### 🔹 Global Execution Context
+```
+Memory Phase:
+- x → undefined
+- a → [function a]
+- b → [function b]
+
+Execution Phase:
+- x = 1
+- a() invoked → new FEC created
+```
+#### 🔹 a() Execution Context
+```
+Memory:
+- x → undefined
+Execution:
+- x = 10
+- console.log(x) → 10
+```
+FEC for `a()` is then **popped off** the call stack.
 
 ---
 
-## ⚠️ 4. Example 2 – Missing Declaration
+#### 🔹 b() Execution Context
+```
+Memory:
+- x → undefined
+Execution:
+- x = 100
+- console.log(x) → 100
+```
+FEC for `b()` is popped off after execution.
 
+---
+
+#### 🔹 Back to Global Context
 ```js
-getName();        // ✅ Logs
-console.log(x);   // ❌ ReferenceError: x is not defined
-function getName() {
-  console.log("Namaste JavaScript");
-}
+console.log(x); // 1
 ```
-✔️ The function exists
-❌ `x` isn't declared, so accessing it gives a **ReferenceError**
+Global `x` is still 1 → prints 1.
 
 ---
 
-## ❌ 5. Example 3 – Function Expressions
-```js
-getName();            // ❌ TypeError: getName is not a function
-console.log(getName); // ✅ undefined
-var getName = function() {
-  console.log("Namaste JavaScript");
-};
-```
-✔️ `getName` is a **variable declaration**, not a function declaration
-✔️ It's hoisted as `undefined`, so calling it yields a **TypeError**
+### 🧠 Scope Isolation Insight:
+Each function creates its **own local `x`**, which:
+* **Shadows** the global `x` inside its own scope
+* Doesn’t affect or overwrite `x` outside the function
 
 ---
 
-## 📌 6. Hoisting Rules Summary
+## 📦 3. Call Stack + Function Contexts
 
-| Declaration Type      | Hoisting Behavior                            |
-| --------------------- | -------------------------------------------- |
-| `var x`               | Hoisted → `undefined`                        |
-| `let` / `const`       | Hoisted **into TDZ ( Temporal Dead Zone )** → ReferenceError        |
-| `function fn() {...}` | Fully hoisted → callable anytime             |
-| `var fn = function()` | Hoisted as `undefined` → TypeError if called |
+```
+Call Stack:
+[ b() Execution Context ]        ← after a()
+[ a() Execution Context ]        ← after global
+[ Global Execution Context ]
+```
+
+Each function call gets pushed onto the call stack and popped after it finishes.
 
 ---
 
-## 🌊 7. Scope of Hoisting
-Hoisting always occurs within its current scope—**global or function-level**:
-```js
-function foo() {
-  console.log(a); // undefined
-  var a = 5;
-}
-foo();
-console.log(a);   // ReferenceError
-```
-✔️ Inside `foo`, `a` is hoisted
-❌ Outside, `a` doesn't exist → ReferenceError
-
----
-
-## 🔁 8. ASCII Visualization
-
-```
-Before code runs (memory creation):
-[Global EC Memory]
-- x         → undefined
-- getName   → [function code]
-
-Code Execution:
-1. run getName() → logs "Namaste JavaScript"
-2. console.log(x) → undefined
-3. x = 7
-4. ...
-```
-Function expressions HOIST only the variable:
-
-```
-[Global EC Memory]
-var getName = () => {} or var getName = function (){}
-- getName   → undefined
-Code Execution:
-1. getName() → TypeError: getName is not a function
-```
-
----
-
-## ✅ 9. Key Takeaways
-* Hoisting moves **declarations** to top during memory phase, not initializations
-* `var` → hoisted as `undefined`; `let`/`const` → TDZ (Temporal Dead Zone); function declarations → fully hoisted
-* **Function expressions** behave like variables—no hoisting of function code
-* Understanding hoisting is crucial to avoid unexpected bugs and errors
+## ✅ 4. Key Takeaways
+* Function calls create **isolated execution contexts** with their own variables.
+* Variables like `x` are **function-scoped**, even if named the same.
+* Local variables never overwrite global ones.
+* Execution is tracked using the **call stack**.
 
 ---
