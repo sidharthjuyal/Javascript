@@ -31,7 +31,7 @@ var square4 = square(4);
 2. **Code Phase**
    * `n = 2`
    * Calling `square(2)`:
-     * New function execution context (with memory component/ variable environment and code Component/thread of execution):
+     * New function execution context (memory component/ variable environment and code Component/thread of execution):
        * `num = 2`
        * `ans = 4`
        * returns `4`, stored in `square2`
