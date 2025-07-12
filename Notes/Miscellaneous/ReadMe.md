@@ -52,4 +52,3 @@ console.log(window.x);       // 10
 | Global EC | Always created, even if file is empty |
 | `window`  | Global object that holds globals      |
 | `this`    | Same as `window` outside any function |
-```
