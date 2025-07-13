@@ -1,7 +1,5 @@
 # 📘 Shortest JS Program, `window`, & `this`
 
----
-
 ## 🔍 1. Shortest JS Program
 - An **empty `.js` file** → no code → still executes.
 - JS engine creates:
@@ -124,4 +122,3 @@ console.log(b);         // ReferenceError: b is not defined
     ↓
 ReferenceError: b is not defined
 
----
