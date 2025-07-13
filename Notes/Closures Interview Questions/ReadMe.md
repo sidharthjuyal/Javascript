@@ -90,6 +90,7 @@ outest()('hello')(); // still logs 10 — inner `a` shadows global
 ## 🧩 2. Why Closures Matter
 * **Data hiding & encapsulation**: variables live only inside your function.
   ``` js
+  // Constructor Function
   function Counter() {
      let count = 0;
      this.incrementCounter() {
