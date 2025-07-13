@@ -3,10 +3,11 @@
 ---
 
 ## 🔍 1. Scope vs Lexical Environment
+- Lxical means "in Hierarchy". 
 - **Scope** defines *where* a variable or function is accessible.
 - A **Lexical Environment (LE)** is created with each execution context, combining:
   - Local memory (variables/functions)
-  - Reference to the parent LE
+  - Reference to the parent Lexical Environment.
 
 ---
 
