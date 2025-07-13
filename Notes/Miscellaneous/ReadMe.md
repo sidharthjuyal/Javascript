@@ -6,9 +6,9 @@
 - An **empty `.js` file** → no code → still executes.
 - JS engine creates:
   - **Global Execution Context (GEC)**
-  - **Global object** (`window` in browsers)
+  - **Global object** (`window` in browsers) - created inside global scope.
   - `this` in global scope points to `window`
-
+  - global variables and functions are attached to window object.
 ---
 
 ## 🌐 2. `window` – The Global Object
