@@ -1,7 +1,5 @@
 # 📘 `let` & `const` and Temporal Dead Zone
 
----
-
 ## 🔍 1. Are `let` and `const` hoisted?
 Yes—but differently than `var`:
 - During memory allocation:
@@ -71,4 +69,3 @@ Yes—but differently than `var`:
 `let` and `const` are hoisted but cannot be accessed before initialization due to TDZ.
 Use `const` for constants, `let` when needed, and avoid `var` to keep code safe, clean, and predictable.
 
----
