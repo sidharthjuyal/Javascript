@@ -87,8 +87,14 @@ console.log(b);         // ReferenceError: b is not defined
 ## ⚠️ 4. `undefined` ≠ empty or `null`
 * `undefined` is its own type and reserved keyword.
 * It's a placeholder until you assign a real value.
-* Best practice: **don’t manually assign `undefined`** — it confuses intent. ([Scribd][1], [LinkedIn][2])
-
+* Best practice: **don’t manually assign `undefined`** — it confuses intent.
+### ⚠️ Why Not to Manually Assign `undefined`
+- JS **automatically assigns `undefined`** to uninitialized variables.
+- Manually doing `var a = undefined` creates confusion:
+  - Was it set by the dev or left uninitialized?
+- ✅ Use `null` if you want to **intentionally indicate "no value"**.
+- you can also consider using empty string or boolean
+```
 ---
 
 ## 📋 5. Behavior Summary
@@ -109,7 +115,6 @@ console.log(b);         // ReferenceError: b is not defined
 ---
 
 ## 🔁 7. Visual Flowchart
-
 ```
 [ var a; ]
     ↓
