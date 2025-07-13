@@ -11,7 +11,7 @@ Yes—but differently than `var`:
 ---
 
 ## ⚠️ 2. Temporal Dead Zone (TDZ)
-- The time between **start of scope** and **declaration line** for `let`/`const`.
+- The time between **start of scope** (when the let or const variable was first hoisted/ allocated some memory ) and **initialization line** (initialized with a value) for `let`/`const`.
 - Accessing these variables *before they’re initialized* causes a **ReferenceError**.
 - Example:
   ```js
@@ -32,17 +32,16 @@ Yes—but differently than `var`:
 
 ## 🧠 4. Memory placement
 * `var`: stored in **Global Execution Context**, accessible via `window.varName`.
-* `let`/`const`: stored in a **separate internal record**, *not* attached to `window`.
+* `let`/`const`: are allocated memory but they are stored in a **separate memory space**, *not* attached to `window`. and you cannot access them before initialization.
 
 ---
 
 ## 💡 5. `let` vs `const`
-
-| Feature        | `let`           | `const`                          |
-| -------------- | --------------- | -------------------------------- |
-| Reassignable?  | ✅ Yes           | ❌ No                             |
-| Redeclarable?  | ❌ No            | ❌ No                             |
-| Requires init? | ❌ Can omit init | ✅ Must initialize on declaration |
+| Feature         | `let`      | `const`                             |
+|----------------|------------|--------------------------------------|
+| Reassignable?  | ✅ Yes     | ❌ No → **TypeError** if reassigned  |
+| Redeclarable?  | ❌ No      | ❌ No → **SyntaxError** if redeclared |
+| Requires init? | ❌ No      | ✅ Yes → **SyntaxError** if not initialized |
 
 ---
 
