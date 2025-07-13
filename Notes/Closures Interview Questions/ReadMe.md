@@ -89,6 +89,27 @@ outest()('hello')(); // still logs 10 — inner `a` shadows global
 
 ## 🧩 2. Why Closures Matter
 * **Data hiding & encapsulation**: variables live only inside your function.
+  ``` js
+  function Counter() {
+     let count = 0;
+     this.incrementCounter() {
+        count++;
+        console.log(count);
+     }
+     this.deccrementCounter() {
+        count--;
+        console.log(count);
+     }
+  }
+
+  var counter1 = new Counter();
+  counter1().incrementCounter;  // 1
+  counter1().incrementCounter;  // 2
+  counter1().decrementCounter;  // 1
+
+  var counter2 = counter();  // created fresh new counter
+  counter2().incrementCounter; // 1 
+  ```
 * **Module pattern, currying, memoization**: closures keep state alive.
 * **Event handlers, timers**: let functions remember data after outer execution.
 
@@ -96,8 +117,47 @@ outest()('hello')(); // still logs 10 — inner `a` shadows global
 
 ## ⚠️ 3. Memory & Garbage Collection
 * Closures **hold references to outer variables**, which prevents them from being garbage-collected.
-* If misused, this can cause **memory leaks** or bloated memory usage.
+* If misused, this can cause **memory leaks** or bloated memory usage. (can also freeze the browser)
 * Modern JS engines are optimized to clean up unused closures, but awareness is key.
+
+---
+
+### 🗑️ What is Garbage Collection in JavaScript?
+**Garbage Collection (GC)** is the process by which the JavaScript engine automatically frees up memory that's no longer in use — i.e., memory that is no longer **reachable**.
+
+---
+
+### 🧠 How It Works:
+- JS uses a mechanism called **Mark-and-Sweep**:
+  - The engine starts from the **root** (like global objects).
+  - It recursively marks all **reachable values** (variables, objects, functions).
+  - Any value **not marked** (unreachable from any live reference) is considered **garbage** and is **deleted** from memory.
+
+---
+
+### 🔁 Closures & GC:
+- Closures keep variables **alive** by maintaining references.
+- If a closure is **still accessible** (e.g., via an event listener or timeout), its captured variables **won’t be garbage collected**.
+- Once there are **no references** to a closure (and thus no reference to its environment), **GC kicks in**.
+
+---
+
+### ✅ Example:
+```js
+function outer() {
+  let a = 10;
+  return function inner() {
+    console.log(a);
+  };
+}
+const fn = outer(); // closure created, `a` is still in memory
+// If `fn` is later set to null → closure + `a` becomes unreachable → GC clears it
+````
+
+### 🚨 Why This Matters:
+* Preventing **memory leaks** in long-running apps.
+* Understanding how closures can **retain memory longer than expected**.
+* Writing more **optimized**, **leak-free** JavaScript.
 
 ---
 
