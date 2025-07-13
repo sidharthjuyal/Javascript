@@ -1,4 +1,4 @@
-# 📘 Namaste JavaScript Ep 9 – Block Scope & Shadowing
+# 📘 Block Scope & Shadowing
 
 ---
 
