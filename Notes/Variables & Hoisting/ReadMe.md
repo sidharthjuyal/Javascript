@@ -20,7 +20,6 @@ Yes—but differently than `var`:
 
   var a = 100;
   let b = 200;
- ```
 
 ---
 
