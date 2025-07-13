@@ -1,7 +1,5 @@
 # 📘 Closures in JS
 
----
-
 ## 🔍 1. What Is a Closure?
 - A **closure** is a function bundled together with its **lexical environment**—i.e., all the variables that were in scope when it was created.  
 This allows the function to **remember and access** those variables even after its outer function has finished execution.
