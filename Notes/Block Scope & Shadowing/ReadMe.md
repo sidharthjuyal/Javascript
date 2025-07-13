@@ -1,7 +1,5 @@
 # 📘 Block Scope & Shadowing
 
----
-
 ## 🔍 1. What is a Block?
 - A **block** is a group of statements wrapped in `{…}`. It creates its own **block scope**. A block is also known as compound statement.
 - We can group multiple statements in a block where javascript expects a single statement. Example:
