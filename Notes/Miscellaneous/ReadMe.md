@@ -52,3 +52,71 @@ console.log(window.x);       // 10
 | Global EC | Always created, even if file is empty |
 | `window`  | Global object that holds globals      |
 | `this`    | Same as `window` outside any function |
+
+---
+
+# 📘 `undefined` vs “not defined” in JS
+
+---
+
+## 🔍 1. Memory Allocation in JavaScript
+- Before running any code, JS performs a **memory creation phase**:
+  - Variables (with `var`, `let`, `const`) are allocated memory.
+  - Uninitialized variables are set to `undefined`.
+  - Functions get their full definitions in memory.
+
+---
+
+## ❗ 2. `undefined` vs. “not defined”
+- **`undefined`**: Memory exists but no value is assigned.
+- **ReferenceError: x is not defined**: No memory reserved — variable was never declared.
+
+---
+
+## 🧪 3. Code Examples
+
+```js
+var a;
+console.log(a);         // undefined
+console.log(b);         // ReferenceError: b is not defined
+````
+* `a` → exists, but no value → **undefined**
+* `b` → never declared → **not defined**&#x20;
+---
+
+## ⚠️ 4. `undefined` ≠ empty or `null`
+* `undefined` is its own type and reserved keyword.
+* It's a placeholder until you assign a real value.
+* Best practice: **don’t manually assign `undefined`** — it confuses intent. ([Scribd][1], [LinkedIn][2])
+
+---
+
+## 📋 5. Behavior Summary
+| Situation                   | Result                      |
+| --------------------------- | --------------------------- |
+| Declared, no value          | `undefined`                 |
+| Never declared              | ReferenceError: not defined |
+| Manually set to `undefined` | Allowed, but discouraged    |
+
+---
+
+## ✅ 6. Why It Matters
+* Understanding the distinction helps in debugging:
+  * Logs `undefined` → variable exists but isn’t set.
+  * Throws ReferenceError → you likely made a typo or forgot to declare it.
+* Avoids pitfalls with conditional checks and default values.
+
+---
+
+## 🔁 7. Visual Flowchart
+
+```
+[ var a; ]
+    ↓
+[a: undefined] —> console.log(a) // prints undefined
+
+[ console.log(b) ]
+    ↓
+ReferenceError: b is not defined
+
+---
