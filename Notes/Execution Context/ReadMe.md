@@ -22,5 +22,4 @@ Understanding execution context helps you grasp:
 - How variables and functions are stored and managed
 - Why JavaScript is synchronous by default
 - The groundwork for deeper concepts like hoisting, scope, closures, and the event loop
-
----
+- 
