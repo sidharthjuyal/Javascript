@@ -75,4 +75,3 @@ Understanding this gives clarity on:
 * Each function invocation gets its own context
 * Local vs. global scope controlled via context stacking
 
----
