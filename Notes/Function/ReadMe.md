@@ -3,7 +3,7 @@
 ---
 
 ## 🔍 1. Function Invocation & Execution Context
-Whenever a function is invoked, JavaScript creates a **new Functional Execution Context (FEC)** — a container similar to the global one but scoped to that function
+Whenever a function is invoked, JavaScript creates a **new Functional Execution Context (FEC)** — a container similar to the global one but scoped to that function.
 Each FEC has:
 ```
 Execution Context (Function)
@@ -20,102 +20,104 @@ Execution Context (Function)
 ## 🧠 2. Variable Environment in Function
 When a function runs:
 1. **Memory Phase**:
-   - Parameters get their passed-in values.
-   - Local `var` variables are hoisted and set to `undefined`.
+   - Parameters and local `var` variables are hoisted (set to `undefined`).
 2. **Execution Phase**:
-   - Code runs, assigns values, performs logic, returns a value.
+   - Values are assigned, logic is executed, and function may return a value.
+---
 
 ### 🔁 Example:
 ```js
-var x = 10;
+var x = 1;
+a();
+b();
+console.log(x);
 
-function foo(a, b) {
-  var c = a + b;
-  console.log(x, a, b, c);
+function a() {
+  var x = 10;
+  console.log(x);
 }
 
-foo(3, 4);
-// Global x accessible;
-a=3, b=4, c=7
+function b() {
+  var x = 100;
+  console.log(x);
+}
 ````
+### 🔍 Output:
+```
+10
+100
+1
+```
+
+### ⚙️ Execution Flow:
+
+#### 🔹 Global Execution Context
+```
+Memory Phase:
+- x → undefined
+- a → [function a]
+- b → [function b]
+
+Execution Phase:
+- x = 1
+- a() invoked → new FEC created
+```
+#### 🔹 a() Execution Context
+```
+Memory:
+- x → undefined
+Execution:
+- x = 10
+- console.log(x) → 10
+```
+FEC for `a()` is then **popped off** the call stack.
+
+---
+
+#### 🔹 b() Execution Context
+```
+Memory:
+- x → undefined
+Execution:
+- x = 100
+- console.log(x) → 100
+```
+FEC for `b()` is popped off after execution.
+
+---
+
+#### 🔹 Back to Global Context
+```js
+console.log(x); // 1
+```
+Global `x` is still 1 → prints 1.
+
+---
+
+### 🧠 Scope Isolation Insight:
+Each function creates its **own local `x`**, which:
+* **Shadows** the global `x` inside its own scope
+* Doesn’t affect or overwrite `x` outside the function
 
 ---
 
 ## 📦 3. Call Stack + Function Contexts
-When `foo()` is invoked:
+
 ```
 Call Stack:
-[ foo() Execution Context ]  ← top
-[ Global Execution Context  ]
+[ b() Execution Context ]        ← after a()
+[ a() Execution Context ]        ← after global
+[ Global Execution Context ]
 ```
-* `foo` FEC is pushed on call stack.
-* After `foo` finishes, its context is popped off.
-* Execution returns to Global.
+
+Each function call gets pushed onto the call stack and popped after it finishes.
 
 ---
 
-## 💡 4. Accessing Variables: Scope Chain
-
-Inside `foo`, variable lookup:
-```
-foo’s Variable Environment
-→ refers to Global as outer context
-```
-Means:
-* Looks locally first (`a, b, c`),
-* If not found, climbs to Global (`x`),
-* If still absent, throws ReferenceError.
-
----
-
-## 📝 5. Memory Environment Visualized
-```
-Global VE:
-- x → 10
-- foo → [function]
-
-foo VE (after invocation):
-- a → 3
-- b → 4
-- c → undefined (initially)
-```
-After execution:
-
-```
-c → 7
-```
-
----
-
-## ✅ 6. Why This Matters
-* Each function call gets its own isolated memory!
-* It prevents local variables from leaking globally.
-* Variables live only inside their function’s Variable Enviroment.
-* Setting the stage for closures by linking outer context.
-
----
-
-## 🔁 7. ASCII Diagram – FEC Lifecycle
-
-```
-Invoke foo(3, 4)
-┌───────────────────────────────┐
-│ foo Execution Context created │
-│ ┌ VE: a = 3, b = 4, c(undefined)     │
-│ └ Execute: c = a + b         │
-│ ┌ VE updated: c = 7          │
-│ └ console.log(...)           │
-└───────────────────────────────┘
-Return → foo EC popped off the stack
-```
-
----
-
-## ✅ 8. Key Takeaways
-
-* Function calls create **new Execution Contexts** with isolated memory.
-* Parameters and local `var` variables are hoisted inside that context.
-* Global variables are still accessible via the scope chain.
-* Understanding this lays the groundwork for closures and advanced JS patterns.
+## ✅ 4. Key Takeaways
+* Function calls create **isolated execution contexts** with their own variables.
+* Variables like `x` are **function-scoped**, even if named the same.
+* Local variables never overwrite global ones.
+* Execution is tracked using the **call stack**.
 
 ---
