@@ -94,7 +94,7 @@ console.log(b);         // ReferenceError: b is not defined
   - Was it set by the dev or left uninitialized?
 - ✅ Use `null` if you want to **intentionally indicate "no value"**.
 - you can also consider using empty string or boolean
-```
+
 ---
 
 ## 📋 5. Behavior Summary
