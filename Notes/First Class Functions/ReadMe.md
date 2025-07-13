@@ -9,6 +9,70 @@ JavaScript treats functions as **first-class citizens**, meaning:
 
 ---
 
+### ✅ Function Statement (a.k.a Function Declaration)
+```js
+function greet() {
+  console.log("Hello!");
+}
+greet(); // ✅ Works before this line too (due to hoisting)
+````
+* Declared using the `function` keyword at the top level
+* ✅ Hoisted fully — both name and body
+* Can be invoked **before** it's defined
+
+---
+
+### ✅ Function Expression
+```js
+const greet = function () {
+  console.log("Hi there!");
+};
+greet(); // ❌ Cannot call before this line
+```
+* A function is assigned to a variable
+* ❌ Only the variable is hoisted, not the function body
+* You **can’t call it before the assignment**
+
+---
+
+### 🤐 Anonymous Function
+```js
+setTimeout(function () {
+  console.log("Anonymous!");
+}, 1000);
+```
+
+* Function **without a name**
+* Mostly used in callbacks, one-liners
+* Cannot be hoisted — they only exist when the line is executed
+
+---
+
+### 🧠 Named Function Expression
+```js
+const greet = function sayHi() {
+  console.log("Hey!");
+};
+greet();     // ✅ works
+sayHi();     // ❌ ReferenceError: sayHi is not defined
+```
+* Function expression **with a name**
+* Name is **only visible inside** the function itself (used for recursion, debugging)
+* Still not hoisted
+
+---
+
+## 🔄 Function Declaration vs Expression
+| Feature             | Function Declaration | Function Expression          |
+| ------------------- | -------------------- | ---------------------------- |
+| Name                | Required             | Optional (can be anonymous)  |
+| Hoisting            | ✅ Fully hoisted      | ❌ Not fully hoisted          |
+| Call before define? | ✅ Yes                | ❌ No                         |
+| Syntax              | `function fn() {}`   | `const fn = function() {}`   |
+| Use Case            | Reusable logic       | Callbacks, conditional logic |
+
+---
+
 ## 🧩 2. Example – Assigning to Variables
 ```js
 function greet() {
