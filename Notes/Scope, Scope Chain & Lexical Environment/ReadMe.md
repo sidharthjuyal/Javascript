@@ -1,7 +1,5 @@
 # 📘 Scope Chain, Scope & Lexical Environment
 
----
-
 ## 🔍 1. Scope vs Lexical Environment
 - Lxical means "in Hierarchy". 
 - **Scope** defines *where* a variable or function is accessible.
@@ -96,5 +94,3 @@ Each LE stores local data + a link to its parent, forming the **scope chain**
 * Inner functions access variables from parent scopes via the scope chain.
 * Each function creates its own **LE with pointer to parent**, forming a chain.
 * Global LE's parent is `null`, ending the chain.
-
----
