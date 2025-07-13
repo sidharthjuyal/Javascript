@@ -1,7 +1,5 @@
 # 📘 How Functions Work & Variable Environment
 
----
-
 ## 🔍 1. Function Invocation & Execution Context
 Whenever a function is invoked, JavaScript creates a **new Functional Execution Context (FEC)** — a container similar to the global one but scoped to that function.
 Each FEC has:
@@ -120,4 +118,3 @@ Each function call gets pushed onto the call stack and popped after it finishes.
 * Local variables never overwrite global ones.
 * Execution is tracked using the **call stack**.
 
----
