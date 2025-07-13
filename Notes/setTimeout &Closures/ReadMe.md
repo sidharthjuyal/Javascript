@@ -14,7 +14,9 @@ x();
 ### 🧠 What happens:
 * JS encounters `setTimeout` and **registers the callback** to run after 3 seconds.
 * It doesn’t wait — `console.log("Namaste JavaScript")` runs **immediately**.
+* Time, Tide and Javascript waits for none.
 * After 3s, the callback runs and **logs `i`**, which is `1` (due to closure).
+* The callback inside `setTimeout` forms a **closure with the scope of `x()`**, allowing it to access variables like `i` even after `x()` has completed execution.
 
 ### ✅ Output:
 ```
@@ -81,15 +83,16 @@ x();
 
 ---
 
-## ✅ 4. Solution 2 – Use IIFE (Immediately Invoked Function Expression)
+## ✅ 4. Solution 2 – Use a helper function
 ```js
 function x() {
   for (var i = 1; i <= 5; i++) {
-    (function (j) {
+    function close(x) {
       setTimeout(function () {
-        console.log(j);
-      }, j * 1000);
-    })(i);
+        console.log(x);
+      }, x * 1000);
+    }
+    close(i);
   }
 }
 x();
@@ -103,8 +106,9 @@ x();
 5
 ```
 ### ✅ Why it works:
-* IIFE creates a **new scope** for each loop iteration.
-* `j` is passed as an argument and is **preserved uniquely** for each closure.
+* Each i is passed to a separate invocation of close().
+* Inside close, a new scope is created, so the setTimeout callback captures a fresh x every time.
+* Avoids the shared reference problem of var inside the loop.
 > The closure now captures `j` (not the shared `i`), which locks the value per iteration.
 
 ---
@@ -122,13 +126,6 @@ x();
 | Function-scoped                      | Block-scoped              |
 | Shared across loop                   | New binding per iteration |
 | Hoisted + initialized as `undefined` | Hoisted but in **TDZ**    |
-
----
-
-## 🧠 Real-World Relevance
-* This question is a **common interview favorite**.
-* Test of **understanding closures**, **async timing**, and **variable scoping**.
-* Shows whether you understand **how JS handles execution and memory** behind the scenes.
 
 ---
 
