@@ -3,7 +3,14 @@
 ---
 
 ## 🔍 1. What is a Block?
-A **block** is a group of statements wrapped in `{…}`. It creates its own **block scope**.
+- A **block** is a group of statements wrapped in `{…}`. It creates its own **block scope**. A block is also known as compound statement.
+- We can group multiple statements in a block where javascript expects a single statement. Example:
+```js
+if(true) {
+   var a = 10;
+   console.log(a);
+}
+```
 
 ---
 
@@ -18,8 +25,8 @@ console.log(a); // 10
 console.log(b); // ReferenceError
 console.log(c); // ReferenceError
 ````
-* `var a` is **function/global scoped**, so it leaks out.
-* `let b` and `const c` are **block-scoped** and cannot be accessed outside.
+* `var a` is **function/global scoped**, so it leaks out. get's attached in the global window object.
+* `let b` and `const c` are **block-scoped** and cannot be accessed outside. get's attached to a separate memory space.
 
 ---
 
@@ -32,22 +39,22 @@ var a = 100;
 }
 console.log(a); // 10
 ```
-* Inner `var a` **overwrites** the outer one because both share the same scope.
+* Inner `var a` **overwrites** the outer one because both share the same scope (a is attached to the global window object).
 
 ---
 
 ## ✅ 4. Shadowing with `let` and `const`
 ```js
-let b = 100;
+let b = 100;  // Separate memory - script scoped 
 {
-  let b = 20;
+  let b = 20;  // separate memory - block scoped
   const c = 30;
   console.log(b); // 20
 }
 console.log(b); // 100
 ```
 * Inner `let b` **shadows** outer `b`.
-* Outer `b` remains unaffected—block-local vs global-level values.
+* Outer `b` remains unaffected: block vs script values.
 
 ---
 
@@ -80,10 +87,11 @@ console.log(c); // 100
 ---
 
 ## ✅ 7. Summary
+* NOTE: Blocks also follow the Lexical Environment Scope Chain Behaviour (Block Chain).
+* All the scope rules that apply to a function, also applies same to the arrow functions.
 * A **block** creates its own scope for `let` and `const`.
 * `var` ignores block scope—declared at function/global level.
 * **Shadowing** means inner variables with the same name hide outer ones:
-
   * `var` shadows `var`
   * `let/const` shadows `let/const` or `var`
   * But `var` cannot shadow `let/const`
