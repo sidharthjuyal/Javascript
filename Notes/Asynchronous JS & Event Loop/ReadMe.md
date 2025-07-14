@@ -1,4 +1,4 @@
-# 🧠 JavaScript vs JS Engine vs Runtime vs Browser vs Web APIs — Demystified
+# 🧠 JS vs JS Engine vs Runtime vs Browser vs Web APIs
 
 ### 🔹 1. JavaScript
 > ✅ **The language.**
