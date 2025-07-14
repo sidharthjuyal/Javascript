@@ -19,11 +19,13 @@
 * How to execute JS code
 * How to manage memory, scopes, closures
 * How to process Promises and microtasks
-**❌ No DOM, no setTimeout, no fetch**
-  [ JS Engine (e.g., V8) ]
-├── Call Stack            ✅
-├── Memory Heap           ✅
-└── Execution Thread      ✅
+**❌ No DOM, no setTimeout, no fetch** and contains:
+- ├── Call Stack            ✅
+- ├── Memory Heap           ✅
+- └── Execution Thread      ✅
+
+ - V8 JS ENGINE:
+<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/549f90f1-800a-4980-9d4e-e07d95a70010" />
 
 ---
 
