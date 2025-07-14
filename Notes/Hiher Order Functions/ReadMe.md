@@ -1,4 +1,4 @@
-# ⚡ Ep. 18 – Higher-Order Functions & Functional Programming
+# Higher-Order Functions
 
 ## 🔁 What is a Function in JavaScript?
 JS treats functions as **first-class citizens**:
