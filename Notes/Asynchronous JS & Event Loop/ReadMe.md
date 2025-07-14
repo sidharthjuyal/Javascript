@@ -92,7 +92,7 @@ You can’t run a full JS app with only the engine.
 | Are Promises async because of browser features? | ❌ No. They are async **within JS engine** using the microtask queue     |
 
 <p align="center">
-<img width="500" height="550" alt="Browsr Structure" src="https://github.com/user-attachments/assets/cc2b3440-bf56-483f-b482-0c5423aff9be" />
+<img width="400" height="450" alt="Browser Structure" src="https://github.com/user-attachments/assets/781a80f3-37e7-4e4c-a408-a0077dc8119b" />
 </p>
 
 ---
