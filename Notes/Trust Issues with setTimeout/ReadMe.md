@@ -109,17 +109,23 @@ setTimeout(() => {
     console.log("Second");
   }, 0);
 }, 0);
+
+output:
+First
+Second
 ```
 Even though both are 0ms, **nested setTimeout** causes a **tick delay** between executions.
 
 ---
 
-## 🧪 Bonus 💥 Sid-Love Insight
+## 🧪 Bonus
 > Even **1000s of 0ms setTimeout()** will queue up and execute **one per event loop tick**, never truly "parallel".
 ```js
 for (let i = 0; i < 1000; i++) {
   setTimeout(() => console.log(i), 0);
 }
+
+output: 0 to 1000 printed
 ```
 ⛔ JS is not multithreaded (unless you explicitly use Web Workers). All callbacks wait their turn.
 
@@ -127,14 +133,7 @@ for (let i = 0; i < 1000; i++) {
 
 ## 🔚 Key Takeaways
 * `setTimeout` is NOT a guaranteed timer — it’s a **scheduling mechanism**.
-* Real delay = `delay + blocking time (if any)`
 * Callback execution always respects the **event loop model**.
 * Know your **task queues**: macrotask vs microtask.
 * Great for **non-blocking async logic**, but not for exact timing (e.g., animations → use `requestAnimationFrame`).
-
----
-
-## ✅ Best Practices
 * Avoid relying on `setTimeout()` for accurate delays.
-* Use Promises or `async/await` for predictable async chains.
-* For animation timing → use `requestAnimationFrame`.
