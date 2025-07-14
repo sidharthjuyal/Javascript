@@ -18,7 +18,7 @@
 3. **TurboFan (JIT Optimizer)**
    - Converts hot bytecode → highly optimized machine code
    - Optimizations include inlining, dead-code elimination
-   - Can **deoptimize** and revert if runtime assumptions change :contentReference[oaicite:2]{index=2}
+   - Can **deoptimize** and revert if runtime assumptions change
 
 ---
 
@@ -26,7 +26,7 @@
 - JS starts running immediately in **Ignition**
 - TurboFan observes patterns, recompiles hot functions
 - Generated machine code runs faster
-- If conditions break (like type mismatch), it deoptimizes and may recompile :contentReference[oaicite:3]{index=3}
+- If conditions break (like type mismatch), it deoptimizes and may recompile
 
 ---
 
@@ -34,7 +34,7 @@
 - **Parser** → AST  
 - **Bytecode Interpreter** (Ignition)  
 - **JIT Compiler** (TurboFan)  
-- **Garbage Collector** (Orinoco, generational, mark-and-sweep) :contentReference[oaicite:4]{index=4}  
+- **Garbage Collector** (Orinoco, generational, mark-and-sweep)
 - **Memory Heap** for object allocation  
 - **Call Stack & Execution Thread** (single-threaded)  
 - **Microtask Queue** (for Promises, async/await)
@@ -46,7 +46,7 @@
 - V8 cooperates with the runtime:
   - Handles internal code execution and optimization  
   - Triggers GC, schedules microtasks  
-  - Provides the engine for Node.js or browsers :contentReference[oaicite:5]{index=5}
+  - Provides the engine for Node.js or browsers
 
 ---
 
