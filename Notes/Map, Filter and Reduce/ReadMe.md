@@ -106,10 +106,3 @@ const result = [1, 2, 3, 4, 5]
   .reduce((a, b) => a + b);        // 60
 ```
 
----
-
-## ✅ Practice Ideas:
-* Create your own custom `map` and `filter`.
-* Build a small reducer to sum, count, or group data.
-* Chain them to process complex logic in one go.
-
