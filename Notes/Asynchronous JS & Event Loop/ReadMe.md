@@ -23,7 +23,6 @@
   [ JS Engine (e.g., V8) ]
 ├── Call Stack            ✅
 ├── Memory Heap           ✅
-├── Microtask Queue       ✅
 └── Execution Thread      ✅
 
 ---
