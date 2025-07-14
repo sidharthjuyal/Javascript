@@ -71,29 +71,16 @@ This is a **closure + HOF** combo — powerful tool in advanced JS.
 
 ---
 
-## ✨ Functional Programming in JS
-### Key Characteristics:
-| Feature               | Meaning                                   |
-| --------------------- | ----------------------------------------- |
-| Pure Functions        | No side effects, same input → same output |
-| Immutability          | Data not mutated                          |
-| First-Class Functions | Functions treated like values             |
-| HOFs                  | Build behavior with logic abstraction     |
+## map () implementation
 ```js
-// Pure Function
-function square(x) {
-  return x * x;
+Array.prototype.calculate = function(logic) {
+   const output = [];
+   for(let i= 0; i < this.length; i++) {
+      output.push(logic(this[i]));
+   }
+   return putput;
 }
+const radius = [3, 2, 4];
+console.log(radius.calculate((r) => 2 * MATH.PI * r));
 ```
-
----
-
-## ⚠️ Side Effects vs Pure Functions
-```js
-// Impure: Side-effect (console.log)
-function printSquare(x) {
-  console.log(x * x);
-}
-```
-Avoiding side-effects makes functions easier to test and reason about.
 
