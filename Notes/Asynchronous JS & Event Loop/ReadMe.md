@@ -92,6 +92,10 @@ You can’t run a full JS app with only the engine.
 | Are Web APIs and browser the same thing?        | 🔁 Kind of. Web APIs are **features exposed by the browser**            |
 | Are Promises async because of browser features? | ❌ No. They are async **within JS engine** using the microtask queue     |
 
+<p align="center">
+<img width="500" height="550" alt="Browsr Structure" src="https://github.com/user-attachments/assets/cc2b3440-bf56-483f-b482-0c5423aff9be" />
+</p>
+
 ---
 
 # 🗺️ Full Execution Flow: Async Code in JavaScript
