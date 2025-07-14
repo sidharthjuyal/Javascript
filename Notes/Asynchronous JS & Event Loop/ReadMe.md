@@ -20,12 +20,17 @@
 * How to manage memory, scopes, closures
 * How to process Promises and microtasks
 **❌ No DOM, no setTimeout, no fetch**
+  [ JS Engine (e.g., V8) ]
+├── Call Stack            ✅
+├── Memory Heap           ✅
+├── Microtask Queue       ✅
+└── Execution Thread      ✅
 
 ---
 
 ### 🔹 3. JavaScript Runtime
 > ✅ **Engine + Everything Else You Need to Actually Run JS Code**
-| Runtime =   | JavaScript Engine + Web APIs + Event Loop + Call Stack |
+| Runtime =   | JavaScript Engine + Web APIs + Event Loop |
 | ----------- | ------------------------------------------------------ |
 | In browsers | V8 (or similar) + DOM + Timers + Fetch + Event Loop    |
 | In Node.js  | V8 + fs + process + timers + HTTP + Event Loop         |
@@ -34,15 +39,14 @@
 ---
 
 ### 🔹 4. Web APIs (in browsers)
-
 > ✅ Provided by **the browser**, NOT JavaScript.
 Includes:
 * `setTimeout`, `setInterval`
-* `DOM` manipulation
-* `fetch`, `XHR`
+* `DOM` APIs
+* `fetch()`
 * `localStorage`, `cookies`
 * `addEventListener`
-* etc.
+* `location`, `console.log` etc.
 When you do:
 ```js
 setTimeout(() => console.log("hello"), 0);
