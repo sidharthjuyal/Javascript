@@ -1,4 +1,4 @@
-# 📘 Namaste JavaScript Ep 16 – JS Engine EXPOSED: Google's V8 Architecture 🚀
+# 📘 JS Engine
 
 ## 🔧 1. What Is the JavaScript Engine?
 - It's software (e.g., Chrome’s V8, Firefox’s SpiderMonkey) that:
