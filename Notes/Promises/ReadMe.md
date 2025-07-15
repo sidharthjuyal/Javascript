@@ -1,14 +1,5 @@
 # Promises in JavaScript
 
-## 🧠 Why Promises?
-To solve:
-- ❌ Callback Hell
-- ❌ Pyramid of Doom
-- ❌ Inversion of Control
-Promises offer a **cleaner**, **chained**, and **more controlled** way to handle async operations.
-
----
-
 ## 💡 What is a Promise?
 > A **Promise** is an object that represents the eventual **completion** (or failure) of an asynchronous operation.
 ```js
@@ -18,6 +9,66 @@ const promise = new Promise((resolve, reject) => {
   else reject(error);
 });
 ````
+
+---
+
+## 🧠 Why Promises?
+To solve:
+- ❌ Callback Hell
+- ❌ Pyramid of Doom
+- ❌ Inversion of Control
+Promises offer a **cleaner**, **chained**, and **more controlled** way to handle async operations.
+
+### 🧠 Code:
+```js
+const cart = ['shoes', 'pants'];
+createOrder(cart, function(orderId) {
+  proceedToPayment(orderId);
+});
+```
+
+### ❗ What’s Wrong with This in Terms of Callbacks?
+#### 1. **Inversion of Control**
+You’re passing a callback function to `createOrder`.
+This means **you’ve given control to `createOrder`** to decide:
+* **When** to call your function
+* **Whether** to call it at all
+* **What to pass into it**
+> You’re trusting `createOrder` blindly — it can mess you up.
+Examples of what could go wrong:
+* It might **never call the callback**
+* It might **call it twice**
+* It might **call it with wrong arguments**
+* It might **throw an error and you’d have no centralized way to handle it**
+This is **classic inversion of control** — the function you define is not **in your control anymore**.
+
+---
+
+#### 2. **No Error Handling**
+You don’t know:
+* If `createOrder()` failed
+* Why it failed
+* How to stop `proceedToPayment()` from running if `orderId` is bad
+This makes debugging and flow control **fragile**.
+
+---
+
+#### 3. **Coupled Logic (Rigid Flow)**
+You’re **directly coupling** the payment logic inside the order logic.
+If `createOrder` changes its internals tomorrow — your entire chain might break.
+---
+
+### ✅ Better: Using Promises
+```js
+createOrder(cart)
+  .then(orderId => proceedToPayment(orderId))
+  .catch(err => console.error("Order Failed:", err));
+```
+This:
+* Removes inversion of control
+* Makes your flow **predictable**
+* Handles errors cleanly
+* Keeps code **flat, clean, and readable**
 
 ---
 
