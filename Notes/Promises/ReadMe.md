@@ -133,25 +133,17 @@ createOrder(cart, function(orderId) {
 
 ## Promise Practice
 ```js
+console.clear();
+
 let cart = ["shoes", "pants"];
 // let cart = [];
 
 createOrder(cart)
-  .then(function (orderId) {
-    return proceedToPayment(orderId);
-  })
-  .then(function (paymentInfo) {
-    return showOrderSummary(paymentInfo);
-  })
-  .then(function (orderSummary) {
-    return updateWallet(orderSummary);
-  })
-  .then(function (walletBalance) {
-    console.log(walletBalance);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+  .then( orderId => proceedToPayment(orderId))
+  .then( paymentInfo => showOrderSummary(paymentInfo))
+  .then(orderSummary => updateWallet(orderSummary))
+  .then(walletBalance => console.log(walletBalance))
+  .catch(error => console.log(error))
 
 function validateCart(cart) {
   if (cart.length) return true;
@@ -166,7 +158,7 @@ function createOrder(cart) {
     }
     const orderId = "12345";
     if (orderId) {
-      setTimeout(function () {
+      setTimeout( () => {
         resolve(orderId);
       }, 2000);
     }
@@ -177,9 +169,10 @@ function createOrder(cart) {
 function proceedToPayment(orderId) {
   console.log(orderId);
   let pr = new Promise((resolve, reject) => {
-    setTimeout(function () {
+    setTimeout( () => {
       resolve("Payment is Successful!");
     }, 4000);
+    // reject("Payment Failed!");
   });
   return pr;
 }
@@ -187,7 +180,7 @@ function proceedToPayment(orderId) {
 function showOrderSummary(paymentInfo) {
   console.log(paymentInfo);
   let pr = new Promise((resolve, reject) => {
-    setTimeout(function () {
+    setTimeout( () => {
       resolve("Order Summary");
     }, 1000);
   });
@@ -197,7 +190,7 @@ function showOrderSummary(paymentInfo) {
 function updateWallet(orderSummary) {
   console.log(orderSummary);
   let pr = new Promise((resolve, reject) => {
-    setTimeout(function () {
+    setTimeout( () => {
       resolve("Balance = 2 Billin Dollars.");
     }, 1000);
   });
