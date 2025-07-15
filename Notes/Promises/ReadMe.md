@@ -56,6 +56,7 @@ This makes debugging and flow control **fragile**.
 #### 3. **Coupled Logic (Rigid Flow)**
 You’re **directly coupling** the payment logic inside the order logic.
 If `createOrder` changes its internals tomorrow — your entire chain might break.
+
 ---
 
 ### ✅ Better: Using Promises
