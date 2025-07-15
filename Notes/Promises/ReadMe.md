@@ -129,3 +129,79 @@ createOrder(cart, function(orderId) {
 * They bring back **control, predictability, and composability**.
 * Don’t just consume them — **understand how they’re structured**.
 
+---
+
+## Promise Practice
+```js
+let cart = ["shoes", "pants"];
+// let cart = [];
+
+createOrder(cart)
+  .then(function (orderId) {
+    return proceedToPayment(orderId);
+  })
+  .then(function (paymentInfo) {
+    return showOrderSummary(paymentInfo);
+  })
+  .then(function (orderSummary) {
+    return updateWallet(orderSummary);
+  })
+  .then(function (walletBalance) {
+    console.log(walletBalance);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+function validateCart(cart) {
+  if (cart.length) return true;
+  return false;
+}
+
+function createOrder(cart) {
+  let pr = new Promise((resolve, reject) => {
+    if (!validateCart(cart)) {
+      let err = new Error("your cart is empty!");
+      reject(err);
+    }
+    const orderId = "12345";
+    if (orderId) {
+      setTimeout(function () {
+        resolve(orderId);
+      }, 2000);
+    }
+  });
+  return pr;
+}
+
+function proceedToPayment(orderId) {
+  console.log(orderId);
+  let pr = new Promise((resolve, reject) => {
+    setTimeout(function () {
+      resolve("Payment is Successful!");
+    }, 4000);
+  });
+  return pr;
+}
+
+function showOrderSummary(paymentInfo) {
+  console.log(paymentInfo);
+  let pr = new Promise((resolve, reject) => {
+    setTimeout(function () {
+      resolve("Order Summary");
+    }, 1000);
+  });
+  return pr;
+}
+
+function updateWallet(orderSummary) {
+  console.log(orderSummary);
+  let pr = new Promise((resolve, reject) => {
+    setTimeout(function () {
+      resolve("Balance = 2 Billin Dollars.");
+    }, 1000);
+  });
+  return pr;
+}
+```
+
