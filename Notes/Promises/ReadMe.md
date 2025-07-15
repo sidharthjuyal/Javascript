@@ -113,15 +113,6 @@ loadScript("a.js")
 
 ---
 
-## 🧪 Common Mistakes
-| Mistake                         | Fix                           |
-| ------------------------------- | ----------------------------- |
-| Not returning a Promise         | Always `return` in `.then()`  |
-| Forgetting `.catch()`           | Add one to handle any failure |
-| Mixing callback + promise style | Avoid — stick to one style    |
-
----
-
 ## 🔁 Quick Comparison: Callbacks vs Promises
 | Feature        | Callbacks              | Promises                |
 | -------------- | ---------------------- | ----------------------- |
@@ -129,12 +120,3 @@ loadScript("a.js")
 | Error Handling | ❌ Messy                | ✅ Single `.catch()`     |
 | Control        | ❌ Inversion of Control | ✅ You control the chain |
 | Composition    | ❌ Hard                 | ✅ Easy chaining         |
-
----
-
-## 🔮 What's Next?
-* Promises make way for `async/await` (Ep 3)
-* Event loop's microtask queue will be more relevant
-* You’ll learn **error propagation**, **promise combinators**, and **parallel async**
-
----
