@@ -16,10 +16,10 @@ But **its value depends on how the function is invoked**, not where it’s writt
 ## 🧭 `this` in Different Scenarios
 | Scenario                   | Value of `this`                                 |
 | -------------------------- | ----------------------------------------------- |
-| Global Scope (non-strict)  | `window` (in browser)                           |
+| Global Scope               | `window` (in browser)                           |
 | Global Scope (strict mode) | `undefined`                                     |
 | Inside Object Method       | The object itself (LHS of dot while calling)    |
-| Inside Regular Function    | `window` or `undefined`                         |
+| Inside Regular Function    | `window` or `undefined` (non strict or strict)  |
 | Inside Arrow Function      | Lexically bound (inherits from enclosing scope) |
 | Constructor Function       | New instance (object being constructed)         |
 | Event Listener (DOM)       | The DOM element that received the event         |
@@ -28,7 +28,7 @@ But **its value depends on how the function is invoked**, not where it’s writt
 
 ## 🧪 Example 1 – Global Context
 ```js
-console.log(this); // window (in non-strict mode)
+console.log(this); // window
 ```
 
 ---
@@ -40,6 +40,18 @@ function x() {
 }
 x(); // window (non-strict), undefined (strict)
 ```
+- The value of this keyword in a function is undefined, but because js has 'this substitution', continued below...
+- **this substitution:** if the value of this keyword is undefined or null, this will be replaced with global object, only in non-strict mode.
+- **Gotcha**: value of this keyword also, depends on how it is called.
+- Example: strict mode:
+```js
+"use strict";
+function x() {
+console.log(this);
+}
+x(); // undefined   (function called without any reference in strict mode)
+window.x(); // window object gets printed
+``` 
 
 ---
 
@@ -53,6 +65,9 @@ const user = {
 };
 user.getName(); // "Sid"
 ```
+- NOTE: method: is a function which is a part of an object. (ex - getName).
+- here if we console.log(this) inside getName, we will get the object user printed. (this points to the user object).
+- this behavious will work in strict and non-strict mode both.
 
 ---
 
@@ -81,7 +96,8 @@ const user = {
 
 user.getName(); // undefined
 ```
-Arrow functions **don’t create their own `this`**. They inherit from the outer lexical environment.
+- Arrow functions **don’t create their own `this`**. They inherit from the outer lexical environment.
+- But if you do console.log(this), it will print the window object, as it will inherit from the outer LE and this code's outer LE is the global space.
 
 ---
 
@@ -140,6 +156,19 @@ const obj = {
 };
 obj.b(); // undefined (lexical scope is window)
 obj.c(); // 10
+```
+
+```js
+const obj = {
+  a: 10,
+  b: function() {
+    const y = () => {
+       console.log(this);
+    }
+    y();
+  }
+};
+obj.b(); // obj will be printed
 ```
 
 ---
