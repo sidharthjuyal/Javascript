@@ -88,6 +88,42 @@ Clean, flat, readable ✅
 
 ---
 
+## 💥 Callback Hell Breakdown
+### 🧱 The "Pyramid of Doom"
+When callbacks are **nested within callbacks**, the code visually forms a **triangular or pyramid shape**:
+```js
+doStep1(() => {
+  doStep2(() => {
+    doStep3(() => {
+      doStep4(() => {
+        // ...
+      });
+    });
+  });
+});
+````
+This pattern is hard to:
+* **Read**
+* **Debug**
+* **Extend**
+> The deeper the pyramid, the darker the hell 😈
+> 
+---
+
+### 🔄 Inversion of Control
+> You're handing **control of your logic** to another function.
+When you pass a callback to a function (e.g., `setTimeout`, `fs.readFile`, `doSomethingAsync`), you **trust** it to:
+* Call your callback once
+* Call it with the right data
+* Handle failures correctly
+But if it misbehaves? You’re screwed.
+#### 🔥 Real Risk:
+* Your callback might be called **twice**
+* It might **never be called**
+* You **lose control** over error handling and execution flow
+
+---
+
 ## 📝 Summary
 * ❓ Callback = Function passed & executed later
 * 🔥 Callback Hell = Nested async callbacks that are hard to maintain
