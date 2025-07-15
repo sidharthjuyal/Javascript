@@ -17,7 +17,6 @@ But **its value depends on how the function is invoked**, not where it’s writt
 | Scenario                   | Value of `this`                                 |
 | -------------------------- | ----------------------------------------------- |
 | Global Scope               | `window` (in browser)                           |
-| Global Scope (strict mode) | `undefined`                                     |
 | Inside Object Method       | The object itself (LHS of dot while calling)    |
 | Inside Regular Function    | `window` or `undefined` (non strict or strict)  |
 | Inside Arrow Function      | Lexically bound (inherits from enclosing scope) |
